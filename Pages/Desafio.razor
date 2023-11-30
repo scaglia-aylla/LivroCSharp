@@ -1,0 +1,36 @@
+﻿@page "/desafio"
+
+<h3>Tempo Médio de Viagem</h3>
+
+<label>Distância a Percorrer em Quilômetros </label>
+<input @bind="distancia" class="form-control" />
+<br />
+
+<label>Velocidade média (Km/hora) </label>
+<input @bind="velocidade" class="form-control" />
+<br />
+
+<label>Tempo estimado em horas</label>
+<input @bind="horas" class="form-control" />
+<br/>
+
+
+<button @onclick="CaucularTempo" class="btn btn-primary">Calcular Tempo</button>
+<br />
+<br />
+
+
+
+<br />
+<br />
+
+@code {
+    double horas;
+    double distancia;
+    double velocidade;
+
+    void CaucularTempo ()
+    {
+        horas = distancia / velocidade;
+    }
+}
