@@ -24,6 +24,39 @@
 <br />
 <br />
 
+
+<h3>Par ou Ímpar</h3>
+
+<div class="form-group">
+    <label>Informe um número</label>
+    <input @bind="original" class="form-control" /><br />
+</div>
+
+<div class="form-group">
+    <button @onclick="ParImpar" class="btn btn-primary">Determinar</button><br/>
+</div>
+<br/>
+
+<div class="form-group">
+    <label>O número informado é <b>@resultado</b>!</label>
+</div>
+<br/>
+<br/>
+
+
+<h3>Números Primos de 0 a 50</h3>
+
+
+<div class="form-group">
+    @foreach (var primo in EncontrarNumerosPrimos(50))
+    {
+        <label><b>@primo</b>-</label>
+    }
+
+</div>
+
+
+
 @code {
     double horas;
     double distancia;
@@ -32,5 +65,47 @@
     void CaucularTempo ()
     {
         horas = distancia / velocidade;
+    }
+
+
+    int original;
+    string resultado;
+
+    void ParImpar()
+    {
+        if(original / 2 == 0)
+        {
+            resultado = "par";
+        }else
+        {
+            resultado = "ímpar";
+        }
+    }
+
+    int numerosPrimos;
+
+    List<int> EncontrarNumerosPrimos(int limite)
+    {
+        List<int> primos = new List<int>();
+        for (int i = 2; i <= limite; i++)
+        {
+            if (EhPrimo(i))
+            {
+                primos.Add(i);
+            }
+        }
+        return primos;
+    }
+
+    static bool EhPrimo(int numero)
+    {
+        for(int i = 2; i < numero; i++)
+        {
+            if(numero % i == 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

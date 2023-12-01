@@ -1,0 +1,50 @@
+﻿@page "/dadossimples"
+
+<h3 class="text-center">Dados Simples</h3>
+
+<div class="form-group">
+    <label>Informe um número enter 1 e 6</label><br />
+    <input @bind="numeroInformado" class="form-control" /><br />
+</div>
+<br />
+
+<div class="form-group">
+    <button @onclick="GirarDado" class="btn btn-primary">
+           Girar o Dado 3 vezes
+    </button><br />
+</div>
+<br />
+
+<div class="form-group">
+    <textarea @bind="resultados" class="form-control" /><br />
+</div>
+<br />
+
+<div class="form-group">
+    <label class="text-danger">@mensagem</label><br />
+</div>
+
+@code {
+    int numeroInformado;
+    Random aleatorio = new Random();
+    string resultados;
+    string mensagem;
+
+    void GirarDado()
+    {
+        resultados = "";
+        mensagem = "Sinto muito, não acertou!";
+
+        for(int i = 0; i < 3; i++)
+        {
+            int tentativa = aleatorio.Next(6) + 1;
+            resultados = resultados + tentativa + "/";
+
+            if(tentativa == numeroInformado)
+            {
+                mensagem = "Parabéns, você acertou!!";
+            }
+        }
+    }
+
+}
